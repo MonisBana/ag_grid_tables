@@ -50,7 +50,7 @@ function Tables() {
             Country: "Bangladesh",
           },
           {
-            Id: "4",
+            Id: 4,
             Name: "Monis",
             Email: "monisbana04@gmail.com",
             Gender: "Male",
@@ -151,21 +151,9 @@ function Tables() {
     } else {
       index = rowData.length - 1;
     }
-
-    gridApi.applyTransaction({
-      add: [
-        {
-          Id: "",
-          Name: "",
-          Email: "",
-          Gender: "",
-          DOB: "",
-          City: "",
-          Country: "",
-        },
-      ],
-      addIndex: index + 1,
-    });
+    const newRowData = rowData;
+    newRowData.splice(index + 1, 0, {});
+    gridApi.setRowData(newRowData);
   }
   //Helper functions to populate Country City dropdown accordingly
   function lookupValue(mappings, key) {
@@ -243,8 +231,8 @@ function Tables() {
             singleClickEdit={true}
             tooltipShowDelay={0}
             enableBrowserTooltips={true}
-            pagination={true}
-            paginationAutoPageSize={true}
+            // pagination={true}
+            // paginationAutoPageSize={true}
           >
             <AgGridColumn
               field="Id"
